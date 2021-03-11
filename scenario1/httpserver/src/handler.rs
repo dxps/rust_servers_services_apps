@@ -82,9 +82,13 @@ impl Handler for WebServiceHandler {
 
         // Parse the URI
         let route: Vec<&str> = s.split("/").collect();
-        // if route if /api/shipping/orders, return json
+        let route_len = route.len();
+        if route_len < 3 {
+            return HttpResponse::new("404", None, Self::load_file("404.html"));
+        }
         match route[2] {
-            "shipping" if route.len() > 2 && route[3] == "orders" => {
+            // If route is /api/shipping/orders, return json.
+            "shipping" if route_len > 3 && route[3] == "orders" => {
                 let body = Some(serde_json::to_string(&Self::load_json()).unwrap());
                 let mut headers: HashMap<&str, &str> = HashMap::new();
                 headers.insert("Content-Type", "application/json");
