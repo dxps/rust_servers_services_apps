@@ -1,8 +1,5 @@
 use super::handler::{Handler, PageNotFoundHandler, StaticPageHandler, WebServiceHandler};
-use http::{
-    httprequest::HttpRequest, httprequest::Method, httprequest::Resource,
-    httpresponse::HttpResponse,
-};
+use http::{httprequest::HttpRequest, httprequest::Method, httprequest::Resource};
 use std::io::prelude::*;
 
 pub struct Router;
@@ -18,18 +15,20 @@ impl Router {
                         // If the route begins with /api, invoke the Web server.
                         "api" => {
                             let rsp = WebServiceHandler::handle(&req);
-                            rsp.send_response(stream);
+                            let _ = rsp.send_response(stream);
                         }
                         // Else, invoke the static page handler.
                         _ => {
-                            StaticPageHandler::handle(&req).send_response(stream);
+                            let rsp = StaticPageHandler::handle(&req);
+                            let _ = rsp.send_response(stream);
                         }
                     }
                 }
             },
             _ => {
                 // For other (non GET) requests, return the 404.
-                PageNotFoundHandler::handle(&req).send_response(stream);
+                let rsp = PageNotFoundHandler::handle(&req);
+                let _ = rsp.send_response(stream);
             }
         }
     }
