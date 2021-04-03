@@ -7,9 +7,12 @@ default-run="tutor-service"
 
 
 [dependencies]
+# Actix Web and Runtime.
 actix-web = "3.2.2"
 actix-rt = "1.1.1"
+# Data serialization library.
 serde = { version = "1.0.124", features = [ "derive"] }
+# Time related library.
 chrono = { version = "0.4.19", features = [ "serde" ] }
 
 
