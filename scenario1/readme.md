@@ -1,26 +1,26 @@
-## Scenario 1
+# Scenario 1
 
-### Workspace
+This scenario illustrates basic client server development setup.
 
-Scenario1's workspace contains 4 projects.
+## Workspace
 
-```
-   .-----------.     .------------.
-   | tpcclient |     | httpserver |
-   |  (proj1)  |     |  (proj4)   |
-   '-----------'     '------------'
+`scenario1` is a workspace that contains 4 projects:
 
-   .-----------.     .------------.
-   | tpcserver |     | http (lib) |
-   |  (proj2)  |     |  (proj3)   |
-   '-----------'     '------------'
-```
-where:
+| name         | project type | description/contains                          |
+| ------------ | ------------ | --------------------------------------------- |
+| `tcpserver`  | binary       | TCP server code                               |
+| `tcpclient`  | binary       | TCP client code                               |
+| `http`       | library      | HTTP protocol functionality                   |
+| `httpserver` | binary       | HTTP server code that uses the `http` library |
 
-| name          | project type     | description/contains         |
-| --------------|------------------|------------------------------|
-| `tcpserver`   | binary           | TCP server code              |
-| `tcpclient`   | binary           | TCP client code              |
-| `httpserver`  | binary           | HTTP server code             |
-| `http`        | library          | HTTP protocol functionality  |
+## Usage
 
+For `httpserver`, do `./run_httpserver.sh` to start it and then:
+
+- Get the homepage (content of `public/index.html` file) using:<br/>
+  `curl localhost:3000` or `curl localhost:3000/index.html`<br/>
+  This also serves a referred CSS file using the same `StaticPageHandler`.
+- Get some health page (content of `public/health.html` file) using:<br/>
+  `curl localhost:3000/health.html`
+- Call an API operation (that returns the content of `data/orders.json` file) using:<br/>
+  `curl localhost:3000/api/shipping/orders`

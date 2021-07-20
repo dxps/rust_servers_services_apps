@@ -20,11 +20,11 @@ impl<'a> Server<'a> {
         // Listen to incoming connections in a loop.
         for stream in conn_listener.incoming() {
             let mut stream = stream.unwrap();
-            println!("Connection established.");
             let mut read_buffer = [0; 90];
             stream.read(&mut read_buffer).unwrap();
             // Convert incoming into our data structure.
             let req: HttpRequest = String::from_utf8(read_buffer.to_vec()).unwrap().into();
+            println!("Got request {:?}", req);
             // And pass it to the router to pick the appropriate handler.
             Router::route(req, &mut stream);
         }

@@ -70,7 +70,10 @@ impl From<String> for HttpRequest {
                 // An empty line (the one before the body).
             } else if line.is_empty() {
             } else {
-                parsed_body = line;
+                // Clients such as cURL may include "noise" such as "\u{0}\u{0}".
+                if line.replace("\u{0}", "").len() != 0 {
+                    parsed_body = line;
+                }
             }
         }
         // Create the structure out of parsed request string.
