@@ -13,6 +13,7 @@ pub async fn health_check_handler() -> impl Responder {
 async fn main() -> io::Result<()> {
     let app = move || App::new().configure(general_routes);
 
-    // Create a new Web server that loads the app, it binds to a port for listening and starts.
+    // Create a new Web server that loads the app,
+    // it binds to a port for listening and starts.
     HttpServer::new(app).bind("127.0.0.1:3000")?.run().await
 }
