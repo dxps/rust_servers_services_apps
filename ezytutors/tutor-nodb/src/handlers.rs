@@ -70,7 +70,7 @@ pub async fn get_course_detail(
         .unwrap()
         .clone()
         .into_iter()
-        .find(|c| c.tutor_id == tutor_id && c.id.unwrap() == course_id);
+        .find(|c| c.tutor_id == tutor_id && c.id == Some(course_id));
 
     if let Some(course) = requested_course {
         HttpResponse::Ok().json(course)
