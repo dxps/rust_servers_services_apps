@@ -1,6 +1,6 @@
 [package]
 authors = ["dxps <marius.ileana@gmail.com>"]
-default-run = "tutor-service"
+default-run = "tutor-nodb_svc"
 edition = "2018"
 name = "tutor-nodb"
 version = "0.1.0"
@@ -21,4 +21,4 @@ chrono = {version = "0.4.19", features = ["serde"]}
 name = "basic-server"
 
 [[bin]]
-name = "tutor-service"
+name = "tutor-nodb_svc"
