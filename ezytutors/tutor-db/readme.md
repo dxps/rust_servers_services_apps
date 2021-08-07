@@ -31,12 +31,20 @@ You can do it in the classic way:
 
 or simpy run the included `./run_pgdb.sh` script that spins up a Docker container of a PostgreSQL server instance with these database and user ready to be used.
 
+#### Data Model
+
 To create the data model and feed some initial data use `database.sql` script. As before, either:
 
 - using a classic way with `psql` like this:<br/>
   `psql -U $DATABASE_USER -d ezytutors < $PROJECT_ROOT/src/database.sql`
 - or using a GUI client (such as DBeaver).
 
+<br/>
+
 ## Iterations
 
 - `./src/bin/iter1.rs` connects to the database and fetches the course with id 1.
+- `./src/bin/iter2.rs` is an interim state, providing the foundations: an Actix HTTP Server with routes and (placeholder-like) handlers.
+- `./src/bin/iter3.rs` is the final state, having db related (in `db_access.rs`) logic included.
+
+<br/>
