@@ -5,19 +5,22 @@ use dotenv::dotenv;
 use sqlx::PgPool;
 use state::AppState;
 
-#[path = "../iter3/state.rs"]
+#[path = "../iter4/state.rs"]
 mod state;
 
-#[path = "../iter3/models.rs"]
+#[path = "../iter4/models.rs"]
 mod models;
 
-#[path = "../iter3/db_access.rs"]
+#[path = "../iter4/errors.rs"]
+mod errors;
+
+#[path = "../iter4/db_access.rs"]
 mod db_access;
 
-#[path = "../iter3/handlers.rs"]
+#[path = "../iter4/handlers.rs"]
 mod handlers;
 
-#[path = "../iter3/routes.rs"]
+#[path = "../iter4/routes.rs"]
 mod routes;
 
 #[actix_rt::main]
