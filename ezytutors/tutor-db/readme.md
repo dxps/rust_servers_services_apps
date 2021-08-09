@@ -47,5 +47,6 @@ To create the data model and feed some initial data use `database.sql` script. A
 - `./src/bin/iter2.rs` is an interim state, providing the foundations: an Actix HTTP Server with routes and (placeholder-like) handlers.
 - `./src/bin/iter3.rs` is the final state, having db related (in `db_access.rs`) logic included.
 - `./src/bin/iter4.rs` includes the error handling logic on db access methods and http handlers.
+- `./src/bin/iter5.rs` proposes a restructuring around modules and concerns.
 
 <br/>
