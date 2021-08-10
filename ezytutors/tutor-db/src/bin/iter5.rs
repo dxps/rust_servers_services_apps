@@ -45,6 +45,7 @@ async fn main() -> io::Result<()> {
             }))
             .configure(routes::general_routes)
             .configure(routes::course_routes)
+            .configure(routes::tutor_routes)
     };
 
     //Start HTTP server
