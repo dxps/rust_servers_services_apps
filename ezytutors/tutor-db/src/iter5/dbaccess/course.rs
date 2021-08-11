@@ -66,7 +66,6 @@ pub async fn update_course_details_db(
     update_course: UpdateCourse,
 ) -> Result<Course, EzyTutorsError> {
     // Retrieve current record
-
     let current_course_row = sqlx::query_as!(
         Course,
         "SELECT * FROM ezy_course_c6 where tutor_id = $1 and course_id = $2",
@@ -124,9 +123,9 @@ pub async fn update_course_details_db(
     let course_row =
         sqlx::query_as!(
         Course,
-        "UPDATE ezy_course_c6 set course_name = $1, course_description = $2, course_format = $3, 
+        "UPDATE ezy_course_c6 SET course_name = $1, course_description = $2, course_format = $3, 
         course_structure = $4, course_duration = $5, course_price = $6, course_language = $7, 
-        course_level = $8 where tutor_id = $9 and course_id = $10 returning tutor_id, course_id, 
+        course_level = $8 where tutor_id = $9 and course_id = $10 RETURNING tutor_id, course_id, 
         course_name, course_description, course_duration, course_level, course_format, 
         course_language, course_structure, course_price, posted_time ", name, description, format, 
         structure, duration, price, language,level, tutor_id, course_id
@@ -147,7 +146,7 @@ pub async fn delete_course_db(
 ) -> Result<String, EzyTutorsError> {
     // sql prep
     let course_row = sqlx::query!(
-        "DELETE FROM ezy_course_c6 where tutor_id = $1 and course_id = $2",
+        "DELETE FROM ezy_course_c6 WHERE tutor_id = $1 AND course_id = $2",
         tutor_id,
         course_id,
     )
