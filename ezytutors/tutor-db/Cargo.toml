@@ -28,3 +28,9 @@ sqlx = {version = "0.5.5", default_features = false, features = ["postgres", "ru
 
 ## OpenSSL for build (if `openssl` is not already installed on the build systems)
 openssl = {version = "0.10.35", features = ["vendored"]}
+
+## Logging lib.
+env_logger = "0.9.0"
+
+## Tracing lib for logging and other telemetry features.
+tracing = {version = "0.1", features = ["log"]}

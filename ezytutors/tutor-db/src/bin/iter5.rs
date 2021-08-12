@@ -2,6 +2,7 @@ use std::{env, io, sync::Mutex};
 
 use actix_web::{web, App, HttpServer};
 use dotenv::dotenv;
+use env_logger::Env;
 use errors::EzyTutorsError;
 use sqlx::PgPool;
 use state::AppState;
@@ -27,6 +28,8 @@ mod state;
 #[actix_rt::main]
 async fn main() -> io::Result<()> {
     dotenv().ok();
+
+    env_logger::Builder::from_env(Env::default().default_filter_or("info")).init();
 
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL is not set in .env file");
     let db_pool = PgPool::connect(&database_url).await.unwrap();

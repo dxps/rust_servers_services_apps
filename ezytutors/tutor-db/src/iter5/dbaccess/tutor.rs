@@ -118,5 +118,8 @@ pub async fn delete_tutor_db(pool: &PgPool, tutor_id: i32) -> Result<String, Ezy
         .execute(pool)
         .await
         .map(|_res| "Tutor has been deleted".into())
-        .map_err(|_err| EzyTutorsError::NotFound("Tutor not found".into()))
+        .map_err(|err| {
+            tracing::info!("delete_tutor_db err: {}", err);
+            EzyTutorsError::NotFound("Tutor not found".into())
+        })
 }
