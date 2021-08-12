@@ -1,8 +1,5 @@
-/* Drop table if it already exists*/
 drop table if exists ezy_course_c6;
 
-/* Create a table. */
-/* Note: Don't put a comma after last field */
 create table ezy_course_c6
 (
    course_id            serial primary key,
@@ -15,5 +12,6 @@ create table ezy_course_c6
    course_price         INT,
    course_language      varchar(30),
    course_level         varchar(30),
-   posted_time          TIMESTAMP default now()
+   posted_time          TIMESTAMP default now(),
+   CONSTRAINT fk_tutor  FOREIGN KEY(tutor_id) REFERENCES ezy_tutor_c6(tutor_id) 
 );
