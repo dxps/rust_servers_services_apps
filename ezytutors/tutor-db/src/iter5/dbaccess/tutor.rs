@@ -101,8 +101,7 @@ pub async fn update_tutor_details_db(
     };
 
     sqlx::query!(
-        "
-    UPDATE ezy_tutor_c6 SET tutor_name=$1, tutor_pic_url=$2, tutor_profile=$3",
+        "UPDATE ezy_tutor_c6 SET tutor_name=$1, tutor_pic_url=$2, tutor_profile=$3",
         name,
         pic_url,
         profile
@@ -119,7 +118,11 @@ pub async fn delete_tutor_db(pool: &PgPool, tutor_id: i32) -> Result<String, Ezy
         .await
         .map(|_res| "Tutor has been deleted".into())
         .map_err(|err| {
-            tracing::info!("delete_tutor_db err: {}", err);
+            if err.to_string().contains("violates foreign key constraint") {
+                return EzyTutorsError::DBError(
+                    "Cannot delete tutor entry while there are courses associated with it.".into(),
+                );
+            }
             EzyTutorsError::NotFound("Tutor not found".into())
         })
 }
