@@ -61,3 +61,56 @@ async fn handle_post_tutor(
 
     Ok(HttpResponse::Ok().content_type("text/html").body(s))
 }
+
+#[cfg(test)]
+mod tests {
+    use actix_web::{
+        dev::{Service, ServiceResponse},
+        http::{header::CONTENT_TYPE, HeaderValue, StatusCode},
+        test,
+        web::Form,
+    };
+
+    use super::*;
+
+    /// A Unit Test for `handle_post_tutor`.
+    #[actix_rt::test]
+    async fn handle_post_1_unit_test() {
+        let params = Form(Tutor {
+            name: "John Doe".to_string(),
+        });
+        let tera =
+            tera::Tera::new(concat!(env!("CARGO_MANIFEST_DIR"), "/static/iter2/**/*")).unwrap();
+        let webdata_tera = web::Data::new(tera);
+
+        let resp = handle_post_tutor(webdata_tera, params).await.unwrap();
+
+        assert_eq!(resp.status(), StatusCode::OK);
+        assert_eq!(
+            resp.headers().get(CONTENT_TYPE).unwrap(),
+            HeaderValue::from_static("text/html")
+        );
+    }
+
+    /// An Integration Test for `handle_post_tutor`.
+    #[actix_rt::test]
+    async fn handle_post_1_integration_test() {
+        let tera = Tera::new(concat!(env!("CARGO_MANIFEST_DIR"), "/static/iter2/**/*")).unwrap();
+        let app =
+            test::init_service(App::new().app_data(Data::new(tera)).configure(app_config)).await;
+
+        let req = test::TestRequest::post()
+            .uri("/tutors")
+            .set_form(&Tutor {
+                name: "John Doe".to_string(),
+            })
+            .to_request();
+        let resp: ServiceResponse = app.call(req).await.unwrap();
+
+        assert_eq!(resp.status(), StatusCode::OK);
+        assert_eq!(
+            resp.headers().get(CONTENT_TYPE).unwrap(),
+            HeaderValue::from_static("text/html")
+        );
+    }
+}
