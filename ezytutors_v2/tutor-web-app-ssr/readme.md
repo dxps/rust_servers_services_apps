@@ -4,6 +4,8 @@
 
 These iterations show how to rendered different elements in HTML using Tera template engine.
 
+- iter 2
+  - It shows a form and the submitted items are received and rendered in a second page.
 - iter 3
-  - It shows how to display a dynamic list.
+  - It shows how to display a dynamic list in a template rendered page.
   - Run it and access http://localhost:8080/tutors
