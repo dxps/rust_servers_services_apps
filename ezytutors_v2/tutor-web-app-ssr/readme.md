@@ -5,7 +5,17 @@
 These iterations show how to rendered different elements in HTML using Tera template engine.
 
 - iter 2
+
   - It shows a form and the submitted items are received and rendered in a second page.
+
 - iter 3
+
   - It shows how to display a dynamic list in a template rendered page.
   - Run it and access http://localhost:8080/tutors
+
+- iter 4
+  - It shows how to fetch the tutors from an external source<br>
+    and then render the dynamic list in the page.
+  - First, go to `tutor-web-service` and run `./run_iter5.sh`
+  - Next, in this `tutor-web-app-ssr` project, run `./run_iter4.sh`
+  - Go to http://localhost:8080/tutors to see the result.
