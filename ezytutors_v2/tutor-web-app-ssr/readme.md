@@ -4,6 +4,10 @@
 
 These iterations show how to rendered different elements in HTML using Tera template engine.
 
+- iter 1
+
+  - It shows how to render a page based on a template, including some context params, plus serving static content.
+
 - iter 2
 
   - It shows a form and the submitted items are received and rendered in a second page.
@@ -14,8 +18,7 @@ These iterations show how to rendered different elements in HTML using Tera temp
   - Run it and access http://localhost:8080/tutors
 
 - iter 4
-  - It shows how to fetch the tutors from an external source<br>
-    and then render the dynamic list in the page.
+  - It shows how to fetch the tutors from an external source and then render the dynamic list in the page.
   - First, go to `tutor-web-service` and run `./run_iter5.sh`
   - Next, in this `tutor-web-app-ssr` project, run `./run_iter4.sh`
   - Go to http://localhost:8080/tutors to see the result.
