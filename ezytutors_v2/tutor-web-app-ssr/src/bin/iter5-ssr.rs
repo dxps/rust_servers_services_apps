@@ -30,7 +30,7 @@ async fn main() -> std::io::Result<()> {
 
         App::new()
             .app_data(web::Data::new(tera))
-            .app_data(web::Data::new(shared_data.clone()))
+            .app_data(shared_data.clone())
             .configure(app_config)
     })
     .bind(&host_port)?

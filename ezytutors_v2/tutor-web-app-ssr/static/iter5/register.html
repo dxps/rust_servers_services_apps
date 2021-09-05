@@ -3,7 +3,7 @@
 
 <head>
     <meta charset=utf-8>
-    <title>Tutor registration</title>
+    <title>Tutor Registration</title>
     <link rel="stylesheet" href="/static/tutor-styles.css">
 </head>
 
@@ -27,9 +27,9 @@
             <input type="password" name="password" value="{{current_password}}" autocomplete="new-password"
                 minlength="8" maxlength="12" required><br>
 
-            <label for="confirm">Confirm password</label><br>
-            <input type="password" name="confirmation" value="{{current_confirmation}}" autocomplete="new-password"
-                minlength="8" maxlength="12" required><br>
+            <label for="password_confirmation">Confirm password</label><br>
+            <input type="password" name="password_confirmation" value="{{current_password_confirmation}}"
+                autocomplete="new-password" minlength="8" maxlength="12" required><br>
 
             <label for="userid">Enter tutor name</label><br>
             <input type="text" name="name" value="{{current_name}}" maxlength="12" required><br>

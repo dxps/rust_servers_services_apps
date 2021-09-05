@@ -7,7 +7,7 @@ pub struct TutorRegisterForm {
     pub password_confirmation: String,
     pub name: String,
     pub imageurl: String,
-    pub profiles: String,
+    pub profile: String,
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -20,7 +20,7 @@ pub struct TutorResponse {
 
 #[derive(Serialize, Deserialize, Debug, sqlx::FromRow)]
 pub struct User {
-    pub tutor_id: i32,
     pub username: String,
     pub password: String,
+    pub tutor_id: i32,
 }
