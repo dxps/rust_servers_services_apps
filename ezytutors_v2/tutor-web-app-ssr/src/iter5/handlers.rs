@@ -36,7 +36,6 @@ pub async fn handle_register(
     app_state: web::Data<AppState>,
     params: web::Form<TutorRegisterForm>,
 ) -> Result<HttpResponse, Error> {
-    println!("handle_register> begin");
     let mut ctx = tera::Context::new();
     let s;
     let username = params.username.clone();
@@ -64,7 +63,6 @@ pub async fn handle_register(
             let awc_client = awc::Client::default();
             let mut res = awc_client
                 .post("http://localhost:3000/tutors")
-                .content_type("application/json")
                 .send_json(&new_tutor)
                 .await
                 .unwrap();
